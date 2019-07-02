@@ -1,0 +1,1275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>debian-firefox Docker Container</title>
+    <meta name="author" content="Jay" />
+    <meta http-equiv="Content-Type" 
+          content="text/html; charset=iso-8859-1" />
+    <meta name="description" 
+	  content="Firefox Internet Browser, World-wide Web, Docker Container" />
+    <meta name="keywords" 
+	  content="firefox mozilla browser internet world-wide web open source software docker container image freeware ewsdocker earthwalk linux debian github git" />
+
+    <style>
+    <!-- ------------------- -->
+    <!--        body         -->
+    <!-- ------------------- -->
+      #body 
+      {
+       margin-top: 0px;
+       margin-left: 0px;
+       margin-right: 0px;
+       margin-bottom: 0px;
+      }
+	    
+      .body 
+      {
+       font-family: Verdana, Arial, Helvetica, sans-serif;
+       font-size: 11px;
+       font-weight: bold;
+       text-decoration:none;
+       color: #000099;
+      }
+	    
+      .body a
+      {
+       text-decoration:none;
+       color:inherit;
+      }
+	    
+      .body a:visited
+      {
+       text-decoration:none;
+       color:inherit;
+      }
+	    
+      .body a:hover
+      {
+       color: inherit;
+       text-decoration:underline;
+       color:inherit;
+      }
+	    
+    </style>
+
+    <!-- ------------------------- -->
+    <!--       page header         -->
+    <!-- ------------------------- -->
+    <style>
+
+      #header
+      {
+       width: 800px;
+       position:relative; 
+       height: 162px;
+       background-image:url(./images/header.jpg);
+       background-repeat:no-repeat;
+      }
+
+      #headerDocker 
+      {
+       position:absolute;
+       font-family: Verdana, Arial, Helvetica, sans-serif;
+       color: #FFFFFF;
+       font-size:30px;
+       font-weight:bold;
+       margin-top:25px;
+       margin-left:430px;
+       left: 0px;
+       top: 0px;
+      }
+
+      #headerDocker a
+      {
+       color: #000099;
+       text-decoration: none;
+      }
+
+      #headerDocker a:visited
+      {
+       color: #000099;
+       text-decoration: none;
+      }
+
+      #headerDocker a:hover
+      {
+       color: #000099;
+       text-decoration: underline;
+      }
+
+      #headerDockerOSS 
+      {
+       position:absolute;
+       font-family: Verdana, Arial, Helvetica, sans-serif;
+       color: #FFFFFF;
+       font-size: 21px;
+       font-weight: bold;
+       margin-top:60px;
+       margin-left:360px;
+       left: 0px;
+       top: 0px;
+      }
+
+      #headerCompany 
+      {
+       position:absolute;
+       font-family: Verdana, Arial, Helvetica, sans-serif;
+       color: #FFFFFF;
+       font-size: 20px;
+       font-weight: bold;
+       margin-top:10px;
+       margin-left:20px;
+       left: 0px;
+       top: 0px;
+      }
+
+      #headerCompanySm 
+      {
+       position:absolute;
+       font-family: Verdana, Arial, Helvetica, sans-serif;
+       color: #FFFFFF;
+       font-size: 14px;
+       font-weight: bold;
+       margin-top:35px;
+       margin-left:45px;
+       left: 0px;
+       top: 0px;
+      }
+
+      #headerMenu
+      {
+       position:absolute;
+       bottom: 20px;
+       right: 30px;
+       font-family: Verdana, Arial, Helvetica, sans-serif;
+       font-size: 10px;
+       font-weight: normal;
+       color: #000099;
+      }
+
+      #headerMenu a
+      {
+       font-family: Verdana, Arial, Helvetica, sans-serif;
+       font-size: 10px;
+       font-weight: bold;
+       color:#000099;
+       text-decoration:none;
+      }
+
+      #headerMenu a:hover
+      {
+       color:#7DA5E0;
+       text-decoration:none;
+      }
+
+    </style>
+
+    <!-- ------------------- -->
+    <!--      leftpanel      -->
+    <!-- ------------------- -->
+    <style>
+
+      #leftpanel
+      {
+       float:left;
+       width:200px;
+      }
+
+      .leftMenuTop
+      {
+       width: 204px; 
+       height: 27px;
+       background-image:url(./images/table_top.jpg);
+       background-repeat:no-repeat;
+      }
+
+      .leftMenuTop a
+      {
+       color: inherit;
+       text-decoration:none;
+      }
+
+      .leftMenuTop a:visited
+      {
+       color: inherit;
+       text-decoration:none;
+      }
+
+      .leftMenuBottom
+      {
+       width: 204px; 
+       height: 23px;
+      }
+
+      .leftMenuPanel 
+      {
+       font-family: Verdana, Arial, Helvetica, sans-serif;
+       font-size: 14px;
+       font-weight: bold;
+       color: inherit;
+      }
+
+      .leftMenuPanel a
+      {
+       color: inherit;
+       text-decoration:none;
+      }
+
+      .leftMenuPanel a:visited
+      {
+       color: inherit;
+       text-decoration:none;
+      }
+
+      .leftMenuContent
+      {
+       width: 204px;
+       background-image:url(./images/table_content.jpg);
+       background-repeat:repeat-y;
+      }
+
+      .leftTitle
+      {
+       margin-left:15px;
+       margin-right:15px;
+       text-align:center;
+       text-decoration:underline;
+       font-size: 12px;
+       font-weight: bold;
+      }
+
+      .leftTitle.left
+      {
+       margin-left:15px;
+       margin-right:15px;
+       text-align:left;
+       text-decoration:underline;
+       font-size: 12px;
+       font-weight: bold;
+      }
+
+      .leftSubTitle
+      {
+       margin-left:18px;
+       margin-right:18px;
+       text-align:center;
+       text-decoration:underline;
+       font-size: 12px;
+       font-weight: bold;
+      }
+
+      .leftSubTitle.left
+      {
+       margin-left:18px;
+       margin-right:18px;
+       text-align:left;
+       text-decoration:underline;
+       font-size: 12px;
+       font-weight: bold;
+      }
+
+      .leftMenuText
+      {
+       margin-left:15px;
+       margin-right:15px;
+       text-align:left;
+       font-size: 12px;
+       font-weight:bold;
+      }
+
+      .leftMenuText.indent
+      {
+       margin-left:18px;
+       margin-right:18px;
+      }
+
+      .leftMenuText a
+      {
+       font-family: Verdana, Arial, Helvetica, sans-serif;
+       font-size: 12px;
+       font-weight: normal;
+       text-decoration:none;
+       color:inherit;
+      }
+
+      .leftMenuText a:hover
+      {
+       font-weight: normal;
+       font-size: 12px;
+       text-decoration:underline;
+       color:inherit;
+      }
+
+      .leftMenuText a:visited
+      {
+       text-decoration:none;
+       color:inherit;
+      }
+
+    </style>
+
+    <!-- ------------------- -->
+    <!--      content        -->
+    <!-- ------------------- -->
+    <style>
+
+        #content
+        {
+         width: 800px;
+        }
+
+        #contentText
+        {
+         float:right;
+         width: 580px;
+        }
+
+    </style>
+
+    <!-- ------------------- -->
+    <!--        title        -->
+    <!-- ------------------- -->
+    <style>
+	    
+      .title
+      {
+       font-family: Verdana, Arial, Helvetica, sans-serif; 
+       font-weight: bold; 
+       font-size: 26px; 
+       color: #7DA5E0; 
+      }
+	    
+    </style>
+
+    <!-- ----------------------- -->
+    <!--       subtitle          -->
+    <!-- ----------------------- -->
+    <style>
+	    
+      .subtitle
+      {
+       font-family: Verdana, Arial, Helvetica, sans-serif;
+       font-size:18px;
+       font-weight: bold;
+       text-decoration:none;
+      }
+
+      .subtitle a
+      {
+       text-decoration:none;
+       color: #CCCCCC;
+      }
+
+      .subtitle a:hover
+      {
+       text-decoration:underline;
+       color:#000099;
+      }
+	    
+    </style>
+
+    <!-- ----------------------- -->
+    <!--   Construction Banner   -->
+    <!-- ----------------------- -->
+    <style>
+
+      #construction
+      {
+       align:center;
+       padding: 15px;
+       padding-top: 20px;
+       font-weight: bold;
+       font-size: 14px;
+       font-family: Verdana, Arial, sans-serif;
+      }
+
+      .construction
+      {
+       position:relative; 
+       align:center;
+      }
+
+    </style>
+
+    <!-- ------------------- -->
+    <!--      li             -->
+    <!-- ------------------- -->
+    <style>
+	    
+      li.disc
+      {
+       list-style-type: disc;
+      }
+
+      li.indent
+      {
+       list-style-type: none;
+      }
+
+      li.indent2
+      {
+       list-style-type: none;
+       margin-left: 24px;
+      }
+
+      li.numbers
+      {
+       list-style-type: decimal;
+      }
+
+    </style>
+
+    <!-- ------------------- -->
+    <!--      table          -->
+    <!-- ------------------- -->
+    <style>
+	    
+      table.center 
+      {
+       margin-left:auto; 
+       margin-right:auto;
+      }
+
+    </style>
+
+    <!-- ------------------- -->
+    <!--      footer         -->
+    <!-- ------------------- -->
+    <style>  
+	    
+      .footer
+      {
+       width: 779px;
+       height: 32px;
+       background-image:url(./images/bg_footer.gif);
+       background-repeat:no-repeat;
+       clear:both;
+       font-family: Verdana, Arial, Helvetica, sans-serif;
+       font-size: 9px;
+       font-weight: bold;
+       color:#FFFFFF;
+      }
+	    
+      .footer a
+      {
+       font-family: Verdana, Arial, Helvetica, sans-serif;
+       font-size: 9px;
+       font-weight: bold;
+       color:#000099;
+       text-decoration:none;
+      }
+	    
+      .footer a:hover
+      {
+       color:#FFFFFF;
+       text-decoration:none;
+      }
+
+      .footerblock
+      {
+       position: relative;
+       top: 4px;
+      }
+
+      .copyright
+      {
+       font-family: Verdana, Arial, Helvetica, sans-serif;
+       font-size: 8px;
+       font-weight: bold;
+       color:#ffffff;
+      }
+	    
+    </style>
+
+    <!-- ------------------- -->
+    <!--       block         -->
+    <!-- ------------------- -->
+    <style>
+	    
+      .undecorated
+      {
+       text-decoration:none;
+       color:inherit;
+      }
+	    
+      .undecorated a
+      {
+       text-decoration:none;
+       color:inherit;
+      }
+	    
+      .undecorated a:visited
+      {
+       text-decoration:none;
+       color:inherit;
+      }
+	    
+      .undecorated a:hover
+      {
+       font-weight:bold;
+       text-decoration:none;
+       color:inherit;
+      }
+	    
+    </style>
+
+    <!-- ------------------- -->
+    <!--       block         -->
+    <!-- ------------------- -->
+    <style>
+	    
+      .block
+      {
+       padding: 15px;
+       padding-top: 20px;
+       font-weight: normal;
+       font-size: 14px;
+       font-family: Verdana, Arial, sans-serif;
+      }
+	    
+      .block a
+      {
+       font-family: Verdana, Arial, Helvetica, sans-serif;
+       font-size: 14px;
+       font-weight: bold;
+       text-decoration:none;
+       color:inherit;
+      }
+	    
+      .block a:hover
+      {
+       font-size: 14px;
+       text-decoration:none;
+       color:inherit;
+      }
+	    
+      .blockHighlight
+      {
+       font-weight: bold;
+       font-size: 14px;
+      }
+
+      .blockNotice
+      {
+       padding: 20px;
+       font-family: Verdana, Arial, sans-serif;
+       border-style: solid;
+       border-width: 2px;
+      }
+	    
+      #blockCentered
+      {
+       text-align:center;
+      }
+	    
+      .blockCentered a
+      {
+       color:inherit;
+       font-weight: bold;
+       text-decoration:none;
+      }
+	    
+      .blockCentered a:visited
+      {
+       color:inherit;
+       font-weight: bold;
+       text-decoration:none;
+      }
+	    
+      .blockCentered a:hover
+      {
+       color:inherit;
+       font-weight: bold;
+       text-decoration:underlined;
+      }
+	    
+    </style>
+
+    <!-- ---------- -->
+    <!--    block   -->
+    <!-- ---------- -->
+    <style>
+	    
+       .border
+      {
+       border-style: solid;
+       border-width: 1px;
+       border-color: #000000;
+      }
+
+      .background
+      {
+       background-color: #FFFFFF;
+      }
+
+    </style>
+
+    <!-- ---------------- -->
+    <!--    blockColors   -->
+    <!-- ---------------- -->
+    <style>
+	    
+      .gray
+      {
+       color:#CCCCCC;
+      }
+
+      .greenTrue
+      {
+       color:#008080;
+      }
+
+      .green
+      {
+       color:#008700;
+      }
+
+      .darkGreen
+      {
+       color: #037D31;
+      }
+
+      .blue
+      {
+       color: #000099;
+      }
+
+      .darkBlue
+      {
+       color:#001DFB;
+      }
+
+      .dockerBlue
+      {
+       color:#2089C4;
+      }
+
+      .githubBlue
+      {
+       color:#0366D6;
+      }
+
+      .phpBlue
+      {
+       color:#6082BB;
+      }
+
+      .ewsBlue
+      {
+       color: #7DA5E0; 
+      }
+
+      .orange
+      {
+       color: #F97237;
+      }
+
+      .black
+      {
+       color:#000000;
+      }
+
+      .red
+      {
+       color:#DC0000;
+      }
+
+    </style>
+
+    <!-- ----------------- -->
+    <!--    blockBorders   -->
+    <!-- ----------------- -->
+    <style>
+	    
+      .green.border
+      {
+       border-color: #008700;
+      }
+
+      .blue.border
+      {
+       border-color: #000099;
+      }
+
+      .darkBlue.border
+      {
+       border-color: #001DFB;
+      }
+
+      .orange.border
+      {
+       border-color: #F97237;
+      }
+
+      .black.border
+      {
+       border-color: #000000;
+      }
+
+      .red.border
+      {
+       border-color: #DC0000;
+      }
+
+      .burgandy
+      {
+       color:#740000;
+      }
+
+      .burgandy.border
+      {
+       border-color: #740000;
+      }
+
+    </style>
+
+    <!-- --------------------- -->
+    <!--    blockBackgrounds   -->
+    <!-- --------------------- -->
+    <style>
+      .green.border.background
+      {
+       background-color: #ECFDF1;
+      }
+
+     .blue.border.background
+      {
+       background-color: #E6EFFC;
+      }
+
+     .darkBlue.border.background
+      {
+       background-color: #D8DBF1;
+      }
+
+     .orange.border.background
+      {
+       background-color:#F9DFD3;
+      }
+	    
+     .black.border.background
+      {
+       background-color:#CCCCCC;
+      }    
+
+      .red.border.background
+      {
+       background-color: #FFF3F5;
+      }
+	    
+      .burgandy.border.background
+      {
+       background-color:#FEF8FA;
+      }
+
+    </style>
+
+    <!--  ------------------------ -->
+    <!--                           -->
+    <!--  Table of Contents Layout -->
+    <!--                           -->
+    <!--  ------------------------ -->
+    <style>
+     #toc_container 
+     {
+      display: table;
+      padding: 10px;
+      font-size: 14px;
+      font-weight:normal;
+     }
+
+    .toc_title 
+    {
+     font-weight: 700;
+     text-align: center;
+    }
+
+    #toc_container li, #toc_container ul, #toc_container ul li
+    {
+     list-style: outside none none !important;
+     font-weight: normal;
+    }
+   </style>
+
+  </head>
+  <body>
+
+<!-- ------------------------ -->
+<!--     The whole page       -->
+<!-- ------------------------ -->
+    <div id="body" align="center">
+
+    <!-- ---------------- -->
+    <!--     Header       -->
+    <!-- ---------------- -->
+      <div id="header">
+
+        <div id="headerCompany" align="left"><span class="githubBlue">EarthWalk Software</span></div>
+        <div id="headerCompanySm" align="left"><span class="githubBlue">and Consulting</span></div>
+
+        <div id="headerDocker" align="left" class="blue">
+          <a href="https://github.com/ewsdocker/ewsdocker.github.io/wiki">ewsdocker</a>
+        </div>
+        <div id="headerDockerOSS" align="left"><span class="blue">Open Source Docker Containers</span></div>
+
+        <div id="headerMenu" align="right"><a 
+	         href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a> | <a 
+	         href="https://hub.docker.com/r/ewsdocker/debian-firefox">Docker Image</a> | <a 
+             href="https://github.com/ewsdocker/debian-firefox">Git Source</a> | <a 
+             href="https://github.com/ewsdocker/debian-firefox/wiki">Wiki</a>
+        </div>
+
+      </div>
+    <!-- --------------- -->
+    <!--    EndHeader    -->
+    <!-- --------------- -->
+
+    <br />
+
+    <!-- ---------------- -->
+    <!--     Content      -->
+    <!-- ---------------- -->
+      <div id="content">
+
+      <!-- ------------------- -->
+      <!--    Left Panel       -->
+      <!-- ------------------- -->
+        <div id="leftpanel">
+
+        <!-- --------------------- -->
+        <!--    Left Panel Menu    -->
+        <!-- --------------------- -->
+        <!--     debian-firefox    -->
+        <!-- --------------------- -->
+          <div class="leftMenuTop">
+            <span class="leftMenuPanel darkBlue"><a 
+                  href="https://github.com/ewsdocker/debian-firefox/wiki">Wiki</a></span>
+          </div>
+
+          <div class="leftMenuContent">
+            <div class="leftMenuText darkBlue">
+              <br />
+              <a href="https://github.com/ewsdocker/debian-firefox/wiki">Home</a><br />
+              <a href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart">Quick Start - latest</a><br />
+              <a href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned">Quick Start - 9.6.0</a><br />
+              <a href="https://github.com/ewsdocker/debian-firefox/wiki/CommandLineInterface">Command-line Interface</a><br />
+              <a href="https://github.com/ewsdocker/debian-firefox/wiki/EdgeTesting">Bleeding-edge Testing</a><br />
+              <a href="https://github.com/ewsdocker/debian-firefox/wiki/Flashplayer">Flash Player Plugin</a><br />
+              <a href="https://github.com/ewsdocker/debian-firefox/wiki/VideoDownloadhelper">Firefox Add-ons Helpers</a><br />
+              <a href="https://github.com/ewsdocker/debian-firefox/wiki/DockerTags">Docker Tags</a><br />
+            </div>
+          </div>
+
+          <div class="leftMenuBottom darkBlue">
+            <img src="./images/table_bottom.jpg" width="204" height="23" border="0" alt="" />
+          </div> 
+        <!-- --------------------- -->
+        <!--    Left Panel Menu    -->
+        <!-- --------------------- -->
+
+              <br />
+
+        <!-- --------------------- -->
+        <!--    Left Panel Menu    -->
+        <!-- --------------------- -->
+        <!-- Additional Resources  -->
+        <!-- --------------------- -->
+          <div class="leftMenuTop">
+            <span class="leftMenuPanel darkBlue">Resources</span>
+          </div>
+
+          <div class="leftMenuContent darkBlue">
+
+            <div class="leftMenuText">
+
+              <br />
+
+              <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a><br />
+              <br />
+              <a href="https://hub.docker.com/r/ewsdocker/debian-firefox">Docker Image</a><br />
+              <a href="https://github.com/ewsdocker/debian-firefox">GitHub Source</a><br />
+              <br />
+              <a href="https://github.com/ewsdocker/debian-openjre">debian-openjre</a><br />
+              <a href="https://github.com/ewsdocker/debian-base-gui">debian-base-gui</a><br />
+              <a href="https://github.com/ewsdocker/debian-base">debian-base</a><br />
+            </div>
+          </div>
+
+          <div class="leftMenuBottom darkBlue">
+            <img src="./images/table_bottom.jpg" width="204" height="23" border="0" alt="" />
+          </div> 
+        <!-- --------------------- -->
+        <!--    Left Panel Menu    -->
+        <!-- --------------------- -->
+
+          <br />
+        <!-- --------------------- -->
+        <!--    Left Panel Menu    -->
+        <!-- --------------------- -->
+        <!--     Licenses          -->
+        <!-- --------------------- -->
+          <div class="leftMenuTop">
+            <span class="leftMenuPanel darkBlue">Licenses</span>
+          </div>
+
+          <div class="leftMenuContent">
+            <div class="leftMenuText darkBlue">
+              <br />
+              <a href="https://github.com/ewsdocker/debian-firefox/wiki/License">debian-firefox</a><br />
+              <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a>
+            </div>
+          </div>
+
+          <div class="leftMenuBottom darkBlue">
+            <img src="./images/table_bottom.jpg" width="204" height="23" border="0" alt="" />
+          </div> 
+        <!-- --------------------- -->
+        <!--    Left Panel Menu    -->
+        <!-- --------------------- -->
+
+              <br />
+
+        <!-- --------------------- -->
+        <!--    Left Panel Menu    -->
+        <!-- --------------------- -->
+        <!--     Repositories       -->
+        <!-- --------------------- -->
+          <div class="leftMenuTop">
+            <span class="leftMenuPanel darkBlue">Repositories</span>
+          </div>
+
+          <div class="leftMenuContent">
+            <div class="leftMenuText darkBlue">
+              <br />
+              <a class="black" href="https://hub.docker.com/r/ewsdocker/">Docker Hub</a><br />
+              <a class="black" href="https://github.com/ewsdocker?tab=repositories">GitHub</a><br />
+              <a class="black" href="https://github.com/ewsdocker/ewsdocker.github.io/wiki">ewsdocker Wiki</a><br />
+            </div>
+
+          </div>
+
+          <div class="leftMenuBottom darkBlue">
+            <img src="./images/table_bottom.jpg" width="204" height="23" border="0" alt="" />
+          </div> 
+        <!-- --------------------- -->
+        <!--    Left Panel Menu    -->
+        <!-- --------------------- -->
+
+          <br />
+
+          <p>
+            &nbsp;
+          </p>
+        </div>
+        <!-- ---------------- -->
+        <!--    Left Panel    -->
+        <!-- ---------------- -->
+
+      <!-- -------------------- -->
+      <!--    contentText       -->
+      <!-- -------------------- -->
+        <div id="contentText">
+ 	        <p style="text-align: center;"><img src="./images/christmas/x032.png" /></p>
+              <div id="blockCentered">
+                <a href="https://hub.docker.com/r/ewsdocker/debian-firefox/"><img 
+                         src="./images/Firefox-esrSmall.png" 
+                         style="vertical-align:middle;border-style:none;" /></a>&nbsp;&nbsp;
+         </div>
+         <span class="title blue">debian-firefox</span>
+         <br />
+          <span class="subtitle gray">Hosted by <a href="http://github.com">GitHub</a></span><br />
+            <div class="darkBlue block" style="background-color:#FFFFFF;">
+                A <i><b>Docker container</b></i> wrapper around an 
+                unmodified <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a> web 
+                browser.  
+	      </div>
+         <br />
+
+        <!-- ---------------- -->
+        <!--  construction    -->
+        <!-- ---------------- 
+          <br />
+
+          <div id="construction">
+            <div class=".construction"><img src="./images/construction.gif" style="width=144px;height=50px;" /></div>
+            <span class="red">Under Construction</span>
+	      </div>
+        <!-- ---------------- -->
+        <!--  construction    -->
+        <!-- ---------------- 
+
+        <!-- ------------- -->
+        <!--    bodyText   -->
+        <!-- ------------- -->
+          <div class="gray body" style="text-align:justify;">
+
+            <div class="darkBlue border block undecorated" id="blockCentered" 
+               style="font-size:18px;font-weight:normal;text-decoration:none;background-color:#FFFFFF;">
+              <a style="font-size:18px;" href="https://www.mozilla.org/en-US/firefox/new/">Firefox 64.0</a><br />
+              <br />
+              <div class="darkBlue" id="blockCentered"
+                style="font-size:16px;font-weight:normal;text-decoration:none;background-color:#FFFFFF;">
+                <a href="https://hub.docker.com/r/ewsdocker/debian-firefox/">debian-firefox</a> Version <b>9.6.0</b><br />
+                <span style="font-weight:bold;font-size:12px;">January 1, 2019</span>.
+              </div>
+
+              <!-- ------------- -->
+              <!--    EDGE       -->
+              <!-- ------------- -->
+              <br />
+ 
+              <div class="red" id="blockCentered"
+                style="font-size:16px;font-weight:normal;text-decoration:none;background-color:#FFFFFF;">
+                New <a href="https://hub.docker.com/r/ewsdocker/debian-firefox/">debian-firefox</a> <span 
+                       style="font-weight:bold;text-color:#990000;">Edge (Version 9.6.1)<br />
+                       Firefox 65.0</span><br />
+                <span style="font-weight:bold;font-size:12px;text-color:#990000;">January 1, 2019</span>.
+              </div>
+
+              <!-- ------------- -->
+              <!--    EDGE       -->
+              <!-- ------------- -->
+            </div>
+
+
+            <!-- --------------------- -->
+            <!--      block            -->
+            <!-- --------------------- -->
+            <div class="darkBlue block">
+
+              <div id="toc_container">
+                <p class="toc_title">debian-firefox Wiki Contents</p>
+ 
+                <ul class="toc_list">
+
+                  <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki">1 debian-firefox</a></li>
+                  <ul>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/Home#newest-version">1.1 Newest Version</a></li>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/Home#overview">1.2 Overview</a></li>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/Home#latest-vs-versioned-release">1.3 Latest vs Versioned Release</a></li>
+                    <ul>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/Home#versioned-releases">1.3.1 Versioned Releases</a></li>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/Home#latest-releases">1.3.2 Latest Releases</a></li>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/Home#suggested-uses">1.3.3 Suggested uses</a></li>
+                    </ul>
+                  </ul>  
+                  <br />  
+                  
+                  <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart">2 Quick Start - latest release</a></li>
+                  <ul>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart#installing-debian-firefox">2.1 Installing debian-firefox</a></li>
+                    <ul>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart#usage">2.1.1 Usage</a></li>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart#environment-variables">2.1.2 Environment Variables</a></li>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart#data-volumes">2.1.3 Data Volumes</a></li>
+                    </ul>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart#running-debian-firefox">2.2 Running debian-firefox</a></li>
+                    <ul>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart#mapping-run-time-resources">2.2.1 Mapping run-time resources</a></li>
+                      <ul>
+                        <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart#mapping-data-volumes">2.2.1.1 Mapping Data Volumes</a></li>
+                      </ul>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart#persistence">2.2.2 Persistence</a></li>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart#timestamps">2.2.3 Timestamps</a></li>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart#x11-server">2.2.4 X11 Server</a></li>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart#uids-and-gids">2.2.5 UIDs and GIDs</a></li>
+                      <ul>
+                        <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart#about-user-namespaces">2.2.5.1 About user namespaces</a></li>
+                        <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart#running-outside-user-namespaces">2.2.5.2 Running outside user namespaces</a></li>
+                        <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart#specifying-uid-and-gid">2.2.5.3 Specifying UID and GID</a></li>
+                      </ul>
+                    </ul>
+                  </ul>
+                  <br />
+
+                  <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned">3 Quick Start 9.6.0</a></li>
+                  <ul>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned#installing-debian-firefox">3.1 Installing debian-firefox</a></li>
+                    <ul>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned#usage">3.1.1 Usage</a></li>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned#environment-variables">3.1.2 Environment Variables</a></li>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned#data-volumes">3.1.3 Data Volumes</a></li>
+                    </ul>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned#running-debian-firefox">3.2 Running debian-firefox:9.6.0</a></li>
+                    <ul>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned#mapping-run-time-resources">3.2.1 Mapping run-time resources</a></li>
+                      <ul>
+                        <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned#mapping-data-volumes">3.2.1.1 Mapping Data Volumes</a></li>
+                      </ul>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned#persistence">3.2.2 Persistence</a></li>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned#timestamps">3.2.3 Timestamps</a></li>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned#x11-server">3.2.4 X11 Server</a></li>
+                      <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned#uids-and-gids">3.2.5 UIDs and GIDs</a></li>
+                      <ul>
+                        <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned#about-user-namespaces">3.2.5.1 About user namespaces</a></li>
+                        <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned#running-outside-user-namespaces">3.2.5.2 Running outside user namespaces</a></li>
+                        <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/QuickStart-Versioned#specifying-uid-and-gid">3.2.5.3 Specifying UID and GID</a></li>
+                      </ul>
+                    </ul>
+                  </ul>
+                  <br />
+
+                  <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/CommandLineInterface">4 Command-line Interface</a></li>
+                  <ul>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/CommandLineInterface#persisting-container-modifications">4.1 Persisting Container Modifications</a></li>
+                  </ul>
+                  <br />
+
+                  <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/EdgeTesting">5 Bleeding-edge Testing</a></li>
+                  <ul>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/EdgeTesting#download-and-re-tag">5.1 Download and Re-tag</a></li>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/EdgeTesting#running-debian-firefox">5.2 Running debian-firefox:9.6.1</a></li>
+                  </ul>
+                  <br />
+
+                  <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/Flashplayer">6 Flashplayer Support</a>
+                  <ul>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/Flashplayer#background">6.1 Background</a>  
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/Flashplayer#installing-adobe-flashplayer-plugin">6.2 Installing Adobe Flashplayer Plugin</a>  
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/Flashplayer#updating-flashplayer">6.3 Updating Flashplayer</a>  
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/Flashplayer#known-issues">6.4 Known issues</a>  
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/Flashplayer#adobe-software-licensing-agreement">6.5 Adobe Software Licensing Agreement</a>  
+                  </ul>
+                  <br />
+
+                  <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/VideoDownloadhelper">7 Firefox Add-on Helper Applications</a></li>
+                  <ul>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/VideoDownloadhelper#overview">7.1 Overview</a></li>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/VideoDownloadhelper#video-downloadhelper---an-example">7.2 Video DownloadHelper - An example</a></li>
+                  </ul>
+                  <br />
+
+                  <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/DockerTags">8 Docker Tags</a></li>
+                  <ul>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/DockerTags#docker-tag-history">8.1 Docker Tag History</a></li>
+                  </ul>
+                  <br />
+
+                  <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/License">9 Licenses</a></li>
+                  <ul>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox/wiki/License">9.1 debian-firefox</a></li>
+                    <li><a style="font-weight:normal;" href="http://www.netsurf-browser.org/about/licence.html">9.2 Firefox</a></li>
+                  </ul>
+                  <br />
+
+                  <li><a style="font-weight:normal;" href="#">10 Resources</a></li>
+                  <ul>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-firefox">10.1 debian-firefox Source on GitHub</a></li>
+                    <li><a style="font-weight:normal;" href="https://hub.docker.com/r/ewsdocker/debian-firefox">10.2 debian-firefox Image on Docker Hub</a></li>
+                    <li><a style="font-weight:normal;" href="http://www.netsurf-browser.org">10.3 Firefox</a></li>
+                  </ul>
+                  <br />
+
+                  <li><a style="font-weight:normal;" href="#">11 Referenced Projects</a></li>
+                  <ul>
+                    <li><a style="font-weight:normal;" href="https://github.com/ewsdocker/debian-openjre">11.1 debian-openjre Wiki</a></li>
+                    <li><a style="font-weight:normal;" href="https://hub.docker.com/r/ewsdocker/debian-base-gui">11.2 debian-base-gui Wiki</a></li>
+                    <li><a style="font-weight:normal;" href="https://hub.docker.com/r/ewsdocker/debian-base">11.3 debian-base Wiki</a></li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+
+            <!-- --------------------- -->
+            <!--      block            -->
+            <!-- --------------------- -->
+
+	        <p style="text-align: center;"><img src="./images/Colorbar-560.gif" /></p>
+			<br />
+
+            <!-- --------------------- -->
+            <!--      block            -->
+            <!-- --------------------- -->
+            <div class="darkBlue border block">
+              <div id="blockCentered">
+                <a href="https://hub.docker.com/r/ewsdocker/debian-netsurf/"><img 
+                         src="./images/NetSurfIcon1.png" 
+                         style="vertical-align:middle;border-style:none;" /></a>&nbsp;&nbsp;
+                <a href="https://hub.docker.com/r/ewsdocker/debian-firefox/" 
+                   class="undecorated" 
+                   style="font-size:16px;font-weight:bold;text-decoration:none;">debian-netsurf</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <br />
+                <br />
+ 	            <span style="font-size:16px; font-weight:bold;">Related Project:</span> &nbsp; 
+ 	                  <a href="https://github.com/ewsdocker/debian-netsurf"><span 
+ 	                     style="font-weight:bold;text-decoration:none;color:inherit;">debian-netsurf</span></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+	          </div>
+
+            </div>
+            <!-- --------------------- -->
+            <!--      block            -->
+            <!-- --------------------- -->
+
+	        <p style="text-align: center;"><img src="./images/Colorbar-560.gif" /></p>
+			<br />
+
+            <!-- --------------------- -->
+            <!--      block            -->
+            <!-- --------------------- -->
+            <div class="green border block">
+
+              <div id="blockCentered">
+ 	            <span style="font-size:16px; font-weight:bold;">Featured Project:</span> &nbsp; 
+ 	                  <a href="https://ewsdocker.github.io/alpine-nginx"><span 
+ 	                     style="font-weight:bold;text-decoration:none;color:inherit;">alpine-nginx</span></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+	          </div>
+
+	          <p>
+            	The <b>alpine-nginx</b> docker server image is based on the latest 
+            	<i>NGINX</i> mainline (<b>edge</b>) version in an  <i>Alpine Linux</i>
+            	<b>edge</b> docker image.
+	          </p>
+
+            </div>
+            <!-- --------------------- -->
+            <!--      block            -->
+            <!-- --------------------- -->
+
+          </div>
+        <!-- ------------- -->
+        <!--    bodyText   -->
+        <!-- ------------- -->
+
+	      <p>&nbsp;</p>
+
+        </div>
+      <!-- ----------------- -->
+      <!--    contentText    -->
+      <!-- ----------------- -->
+
+        <br />
+        <br />
+
+      <!-- ------------ -->
+      <!--    Footer    -->
+      <!-- ------------ -->
+        <div class="footer">
+          <div class="footerblock">
+            <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a> | <a
+               href="https://hub.docker.com/r/ewsdocker/debian-firefox">Docker Image</a> | <a 
+               href="https://github.com/ewsdocker/debian-firefox">Git Source</a> | <a 
+               href="https://github.com/ewsdocker/debian-firefox/wiki">Wiki</a>
+            <br />
+            <div class="footerCopyright">Copyright © 2018, 2019. EarthWalk Software. Modified 2019-01-01.</div>
+          </div>
+        </div> 
+      <!-- ------------ -->
+      <!--    Footer    -->
+      <!-- ------------ -->
+
+      </div>
+      <!-- ------------- -->
+      <!--    content    -->
+      <!-- ------------- -->
+
+    </div>
+  <!-- ------------------------ -->
+  <!--     The whole page       -->
+  <!-- ------------------------ -->
+
+  </body>
+
+</html>
